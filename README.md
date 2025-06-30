@@ -1,0 +1,7 @@
+#"credit scoring understanding" 
+Credit scoring is widely understood to have immense potential to assist in the economic growth of the world economy. Additionally, it is a valuable tool for improving financial inclusion; credit access for individuals and micro, small, and medium enterprises; and efficiency.
+The use of credit scoring and the variety ofscoring have increased significantly in recent years owing to better access to a wider variety of data, increased computing power, greater demand for improvements in efficiency, and economic growth.
+Furthermore, the application of credit scoring has evolved from traditional decision making of accepting or rejecting an application for credit to inclusion of other facets of the credit process such as the pricing of financial services to reflect the risk profile of the consumer or business and the setting of credit limits. Credit scoring is also used to determine minimum levels of regulatory and economic capital, support customer relationship
+management, and, in certain countries, solicit prospective consumers and businesses with offers.
+The methods used for credit scoring have increased in sophistication in recent years. They have evolved from traditional statistical techniques to innovative methods such as artificial intelligence, including machine learning algorithms such as random forests,  radient boosting, and deep neural networks. In some cases, the adoption of innovative
+techniques has also broadened the range of data that may be considered relevant for credit scoring models and decisions.
