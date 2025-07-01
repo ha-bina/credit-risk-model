@@ -11,50 +11,41 @@ The main risks are regulatory risk,Label Mismatch,Bias in Decision-Making and we
 In regulated environments like banking, interpretability, auditability, and stability often outweigh marginal gains in performance. Simple models are typically preferred for regulatory capital estimation, while complex models may be more suitable for internal risk ranking, collections prioritization, or marketing, provided their predictions can be well justified and monitored. The ideal approach involves combining both through hybrid modeling or using complex models for insights and simple models for final decisions.
 # Credit Risk Model
 
-This project implements a credit risk modeling pipeline, including data processing, exploratory data analysis (EDA), model training, and prediction. The goal is to build interpretable and robust credit scoring models for financial risk assessment.
+This repository contains a pipeline for credit risk modeling, including data processing, exploratory data analysis (EDA), feature engineering, model training, and evaluation. The project is designed for transparency, reproducibility, and regulatory compliance.
 
 ## Project Structure
 
 ```
 .
-├── api/                # FastAPI app for serving predictions
-│   ├── main.py
-│   └── pydantic_models.py
+├── api/                  # FastAPI app for serving predictions
 ├── data/
-│   ├── raw/            # Raw input data
-│   │   └── data.csv
-│   └── processed/      # Processed data for modeling
-├── notebooks/
-│   └── 1.0-eda.ipynb   # Exploratory Data Analysis notebook
-├── src/                # Core source code
-│   ├── __init__.py
-│   ├── data_processing.py
-│   ├── predict.py
-│   └── train.py
-├── tests/              # Unit tests
-│   └── test_data_processing.py
-├── Dockerfile
-├── docker-compose.yml
-├── requirements.txt
-└── README.md
+│   ├── raw/              # Raw input data (not tracked by git)
+│   └── processed/        # Processed data outputs
+├── notebooks/            # Jupyter notebooks for EDA and processing
+├── src/                  # Source code for data processing and modeling
+├── tests/                # Unit tests
+├── requirements.txt      # Python dependencies
+├── Dockerfile            # For containerization
+├── .github/workflows/    # CI configuration
+└── README.md             # Project documentation
 ```
 
 ## Getting Started
 
 ### Prerequisites
 
-- Python 3.8+
+- Python 3.8 or higher
 - pip
 
 ### Installation
 
-1. Clone the repository:
+1. **Clone the repository:**
     ```sh
     git clone <repo-url>
     cd credit-risk-model
     ```
 
-2. Install dependencies:
+2. **Install dependencies:**
     ```sh
     pip install -r requirements.txt
     ```
@@ -63,42 +54,41 @@ This project implements a credit risk modeling pipeline, including data processi
 
 #### Data Exploration
 
-Run the EDA notebook:
-- Open [notebooks/1.0-eda.ipynb](notebooks/1.0-eda.ipynb) in Jupyter or VS Code.
-- The notebook loads [data/raw/data.csv](data/raw/data.csv), visualizes distributions, missing values, and correlations.
+- Open and run `notebooks/1.0-eda.ipynb` for exploratory data analysis.
+- The notebook expects raw data at `data/raw/data.csv`.
 
 #### Data Processing
 
-Core data processing functions are in [`src/data_processing.py`](src/data_processing.py).
+- Use `notebooks/processing.ipynb` to preprocess data and generate features for modeling.
 
-#### Model Training
+#### Model Training & Evaluation
 
-Train models using [`src/train.py`](src/train.py).
-
-#### Prediction
-
-Make predictions using [`src/predict.py`](src/predict.py) or via the API.
+- Training and evaluation scripts are in `src/`.
+- Example workflow:
+    ```python
+    from src.data_processing import preprocess_transaction_data
+    from src.utils import evaluate_model, print_evaluation_metrics, save_evaluation_metrics
+    # Load and preprocess data, train model, evaluate, and save metrics
+    ```
 
 #### API
 
-A FastAPI app is provided in [`api/main.py`](api/main.py) for serving predictions.
-
-To run the API:
-```sh
-uvicorn api.main:app --reload
-```
+- The FastAPI app in `api/` can be run to serve predictions:
+    ```sh
+    uvicorn api.main:app --reload
+    ```
 
 ### Testing
 
-Run unit tests in the [tests/](tests/) directory:
-```sh
-pytest tests/
-```
+- Run all unit tests:
+    ```sh
+    pytest tests/
+    ```
 
-### Docker
+### Continuous Integration
 
-Build and run the project using Docker:
-```sh
-docker-compose up --build
-```
+- GitHub Actions workflow runs linting and tests on every push to `main`.
+
+
+
 
