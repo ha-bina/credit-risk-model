@@ -81,6 +81,7 @@ def get_onehot_encoder():
         return OneHotEncoder(handle_unknown="ignore", sparse=False)
 def preprocess_transaction_data(df):
     # Use correct argument for OneHotEncoder depending on sklearn version
+    get_onehot_encoder()
     skl_version = tuple(map(int, sklearn.__version__.split('.')[:2]))
     if skl_version >= (1, 2):
         encoder = OneHotEncoder(sparse_output=False)
