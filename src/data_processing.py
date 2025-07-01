@@ -69,9 +69,17 @@ def build_feature_pipeline(numeric_cols, categorical_cols):
         ("num", num_pipe, numeric_cols),
         ("cat", cat_pipe, categorical_cols)
     ])
-
+from sklearn.preprocessing import OneHotEncoder
+import sklearn
 
 def preprocess_transaction_data(df):
+    # Use correct argument for OneHotEncoder depending on sklearn version
+    skl_version = tuple(map(int, sklearn.__version__.split('.')[:2]))
+    if skl_version >= (1, 2):
+        encoder = OneHotEncoder(sparse_output=False)
+    else:
+        encoder = OneHotEncoder(sparse=False)
+    # ... rest of your code ...
     # Step 1: Extract time features
     time_pipe = TransactionTimeFeatures()
     df = time_pipe.transform(df)
