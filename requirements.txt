@@ -1,0 +1,14 @@
+pandas
+scikit-learn
+mlflow
+joblib
+pytest
+fastapi
+uvicorn
+pydantic
+mlflow
+scikit-learn
+joblib
+flake8
+pytest
+black

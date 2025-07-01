@@ -15,3 +15,11 @@ def print_evaluation_metrics(metrics):
     print(f"Recall: {metrics['recall']:.4f}")
     print(f"F1 Score: {metrics['f1']:.4f}")
     print(f"ROC AUC: {metrics['roc_auc']:.4f}")
+def save_evaluation_metrics(metrics, filepath):
+    """Save evaluation metrics to a text file."""
+    with open(filepath, "w") as f:
+        f.write("Evaluation Metrics:\n")
+        f.write(f"Accuracy: {metrics['accuracy']:.4f}\n")
+        f.write(f"Precision: {metrics['precision']:.4f}\n")
+        f.write(f"Recall: {metrics['recall']:.4f}\n")
+        f.write(f"F1 Score: {metrics['f1']:.4f}\n")
