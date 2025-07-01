@@ -80,31 +80,7 @@ def preprocess_transaction_data(df):
     else:
         encoder = OneHotEncoder(sparse=False)
     # ... rest of your code ...
-    # Step 1: Extract time features
-    time_pipe = TransactionTimeFeatures()
-    df = time_pipe.transform(df)
-
-    # Step 2: Aggregate behavioral features
-    agg_pipe = TransactionAggregator(id_col="AccountId", amount_col="Amount")
-    agg_df = agg_pipe.transform(df)
-
-    # Step 3: Merge static columns (categorical info per customer)
-    static_cols = ["AccountId", "CurrencyCode", "CountryCode", "ProductCategory", "PricingStrategy", "ChannelId"]
-    df_static = df[static_cols].drop_duplicates("AccountId")
-
-    full = pd.merge(agg_df, df_static, on="AccountId", how="left")
-
-    # Step 4: Define feature pipeline
-    numeric_cols = [
-        "Amount_sum", "Amount_mean", "Amount_count", "Amount_std",
-        "Credit_sum", "Debit_sum", "ProductId_nunique", "ChannelId_nunique",
-        "ProviderId_nunique", "CreditDebitRatio"
-    ]
-    categorical_cols = ["CurrencyCode", "CountryCode", "ProductCategory", "PricingStrategy", "ChannelId"]
-
-    pipe = build_feature_pipeline(numeric_cols, categorical_cols)
-
-    return pipe.fit_transform(full)
+    
 def save_processed_data(df, save_path):
    
     df.to_csv(save_path, index=False)
