@@ -63,7 +63,7 @@ def build_feature_pipeline(numeric_cols, categorical_cols):
     ])
     cat_pipe = Pipeline([
         ("imputer", SimpleImputer(strategy="most_frequent")),
-        ("encoder", OneHotEncoder(handle_unknown="ignore", sparse=False))
+        ("encoder", OneHotEncoder(handle_unknown="ignore", sparse_output=False))
     ])
     return ColumnTransformer([
         ("num", num_pipe, numeric_cols),
@@ -80,17 +80,7 @@ def get_onehot_encoder():
     else:
         return OneHotEncoder(handle_unknown="ignore", sparse=False)
 def preprocess_transaction_data(df):
-    # Use correct argument for OneHotEncoder depending on sklearn version
-    get_onehot_encoder()
-    skl_version = tuple(map(int, sklearn.__version__.split('.')[:2]))
-    if skl_version >= (1, 2):
-        encoder = OneHotEncoder(sparse_output=False)
-    else:
-        encoder = OneHotEncoder(sparse=False)
-    # ... rest of your code ...
-    # Step 1: Extract time features
-    time_pipe = TransactionTimeFeatures()
-    df = time_pipe.transform(df)
+    
 
     # Step 2: Aggregate behavioral features
     agg_pipe = TransactionAggregator(id_col="AccountId", amount_col="Amount")
