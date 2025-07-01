@@ -78,7 +78,7 @@ def get_onehot_encoder():
     if skl_version >= (1, 2):
         return OneHotEncoder(handle_unknown="ignore", sparse_output=False)
     else:
-        return OneHotEncoder(handle_unknown="ignore", sparse=False)
+        return OneHotEncoder(handle_unknown="ignore", sparse_output=False)
 def preprocess_transaction_data(df):
     
 
